@@ -15,5 +15,11 @@ target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Werror -Wpedantic)
 target_compile_options(${PROJECT_NAME}-ut PRIVATE -Wall -Wextra -Werror -Wpedantic)
 target_compile_options(${PROJECT_NAME}-ut-bonus PRIVATE -Wall -Wextra -Werror -Wpedantic)
 
+find_package(Threads REQUIRED)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)
+target_link_libraries(${PROJECT_NAME}-ut PRIVATE Threads::Threads)
+target_link_libraries(${PROJECT_NAME}-ut-bonus PRIVATE Threads::Threads)
+
 enable_testing()
 add_test(NAME schedule-tests COMMAND ${PROJECT_NAME}-ut)
